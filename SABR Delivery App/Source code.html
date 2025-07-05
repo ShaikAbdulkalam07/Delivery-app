@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SABR Food Deliveries - Wireframe</title>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Playfair+Display&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+  /* Reset and base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; padding: 0;
+    font-family: 'Inter', sans-serif;
+    background: #f9f9f9;
+    color: #333;
+    line-height: 1.5;
+  }
+  a {
+    text-decoration: none;
+    color: #e86012; /* Swiggy orange accent */
+  }
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  /* Header */
+  header {
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #fb641b;
+    user-select: none;
+     font-family:'Pacifico';
+  }
+  nav {
+    display: flex;
+    gap: 24px;
+  }
+  nav a {
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  nav a:hover, nav a:focus {
+    background-color: #fde8dc;
+    outline: none;
+  }
+  /* Search Section */
+  .search-section {
+    background: #fff;
+    padding: 32px 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .search-container {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+  }
+  .search-input {
+    flex-grow: 1;
+    padding: 14px 16px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px 0 0 8px;
+    transition: border-color 0.3s ease;
+  }
+  .search-input:focus {
+    border-color: #fb641b;
+    outline: none;
+  }
+  .search-button {
+    background-color: #fb641b;
+    border: none;
+    color: white;
+    padding: 0 20px;
+    font-size: 1.15rem;
+    cursor: pointer;
+    border-radius: 0 8px 8px 0;
+    transition: background-color 0.3s ease;
+  }
+  .search-button:hover, .search-button:focus {
+    background-color: #e95400;
+    outline: none;
+  }
+  /* Categories Section */
+  .categories-section {
+    margin: 48px 0 64px 0;
+  }
+  .categories-title {
+    text-align: center;
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: #fb641b;
+  }
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
+    gap: 32px;
+    justify-items: center;
+  }
+  .category-item {
+    background: #fff;
+    border-radius: 16px;
+    width: 120px;
+    height: 140px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 16px;
+    transition: box-shadow 0.3s ease;
+  }
+  .category-item:hover, .category-item:focus {
+    box-shadow: 0 8px 16px rgba(251, 100, 27, 0.3);
+    outline: none;
+  }
+  .category-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+    fill: #fb641b;
+  }
+  .category-label {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #333;
+    text-align: center;
+  }
+  /* Popular Section */
+  .popular-section {
+    margin-bottom: 64px;
+  }
+  .popular-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fb641b;
+    margin-bottom: 24px;
+  }
+  .popular-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 32px;
+  }
+  .popular-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+  }
+  .popular-card:hover, .popular-card:focus {
+    box-shadow: 0 14px 28px rgba(251, 100, 27, 0.3);
+    outline: none;
+  }
+  .popular-image {
+    height: 160px;
+    width: 100%;
+    background-color: #ddd;
+  }
+  .popular-image img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+  }
+  .popular-content {
+    padding: 16px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .restaurant-name {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+    color: #333;
+   font-style: italic;
+  }
+  .restaurant-info {
+    font-size: 0.9rem;
+    color: #777;
+  }
+  /* Footer */
+  footer {
+    background: #222;
+    color: #ddd;
+    padding: 48px 16px 32px;
+    font-size: 0.9rem;
+  }
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .footer-section {
+    flex: 1 1 180px;
+  }
+  .footer-title {
+    color: #fb641b;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+  }
+  .footer-link {
+    display: block;
+    margin-bottom: 12px;
+    color: #ddd;
+    transition: color 0.3s ease;
+  }
+  .footer-link:hover, .footer-link:focus {
+    color: #fb641b;
+    outline: none;
+  }
+  /* Responsive */
+  @media (max-width: 640px) {
+    .header-inner {
+      flex-wrap: wrap;
+      height: auto;
+      padding: 8px 0;
+    }
+    nav {
+      width: 100%;
+      justify-content: center;
+      margin-top: 8px;
+      gap: 16px;
+    }
+    .search-container {
+      flex-direction: column;
+    }
+    .search-input {
+      border-radius: 8px;
+      margin-bottom: 12px;
+      border-right: 2px solid #ddd;
+    }
+    .search-button {
+      width: 100%;
+      border-radius: 8px;
+      padding: 12px 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner" role="banner">
+    <div class="logo" tabindex="0">SABR Food Deliveries</div>
+    <nav aria-label="Primary navigation">
+      <a href="#" tabindex="0">Sign In</a>
+      <a href="#" tabindex="0">Sign Up</a>
+    </nav>
+  </div>
+</header>
+
+<section class="search-section" aria-label="Food search">
+  <form class="container search-container" role="search" onsubmit="event.preventDefault();">
+    <input class="search-input" type="search" placeholder="Search for restaurants or food" aria-label="Search for restaurants or food" />
+    <button type="submit" class="search-button" aria-label="Search">Search</button>
+  </form>
+</section>
+
+<section class="categories-section" aria-labelledby="categories-title">
+  <h2 id="categories-title" class="categories-title">Explore Categories</h2>
+  <div class="container categories-grid">
+    <div class="category-item" tabindex="0" role="button" aria-pressed="false" aria-label="Pizza Category">
+      <svg class="category-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" >
+        <path d="M11.99 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10 2.292 0 4.393-.8 6.017-2.127l-.251-8.698-.001-.002-3 1.732V12h-4V8.998l-3-1.732V12h10v1h-1.382l.382 2.782c-.551.27-1.138.434-1.738.542V12h-1V7h-4v5z" fill="currentColor"/>
+      </svg>
+      <div class="category-label">Pizza</div>
+    </div>
+    <div class="category-item" tabindex="0" role="button" aria-pressed="false" aria-label="Burgers Category">
+      <svg class="category-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" >
+        <path d="M2 7v2h1v2h18V9h1V7H2zm0 10v2h20v-2H2z" fill="currentColor"/>
+      </svg>
+      <div class="category-label">Burgers</div>
+    </div>
+    <div class="category-item" tabindex="0" role="button" aria-pressed="false" aria-label="Sushi Category">
+      <svg class="category-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" >
+        <circle cx="12" cy="12" r="3" fill="currentColor"/>
+        <path d="M21 12a9 9 0 10-18 0 9 9 0 0018 0z" fill="none" stroke="currentColor" stroke-width="2"/>
+      </svg>
+      <div class="category-label">Sushi</div>
+    </div>
+    <div class="category-item" tabindex="0" role="button" aria-pressed="false" aria-label="Desserts Category">
+      <svg class="category-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" >
+        <path d="M12 2C8 2 6 4 6 7v7a5 5 0 004 4.9V22h4v-3.1a5 5 0 004-4.9V7c0-3-2-5-6-5z" fill="currentColor"/>
+      </svg>
+      <div class="category-label">Desserts</div>
+    </div>
+    <div class="category-item" tabindex="0" role="button" aria-pressed="false" aria-label="Drinks Category">
+      <svg class="category-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" >
+        <rect x="6" y="2" width="12" height="4" fill="currentColor"/>
+        <rect x="9" y="6" width="6" height="12" fill="currentColor"/>
+      </svg>
+      <div class="category-label">Drinks</div>
+    </div>
+  </div>
+</section>
+
+<section class="popular-section container" aria-labelledby="popular-title">
+  <h2 id="popular-title" class="popular-title">Popular Restaurants</h2>
+  <div class="popular-list">
+    <article class="popular-card" tabindex="0" role="article" aria-label="pizza palace Restaurant">
+      <div class="popular-image" role="img" aria-label="pizza palace Restaurant image with pasta dish and warm interior">
+        <img src="pasta palace.avif" alt="pizza palace Restaurant with pasta dish and warm interior" onerror="this.style.display='none';" />
+      </div>
+      <div class="popular-content">
+        <h3 class="restaurant-name">pizza palace</h3>
+        <p class="restaurant-info">Italian, Pasta, Pizza • 4.7 ★ • 25-35 mins</p>
+      </div>
+    </article>
+
+    <article class="popular-card" tabindex="0" role="article" aria-label="Andhra Corner Restaurant">
+      <div class="popular-image" role="img" aria-label="Andhra Corner Restaurant image with traditional Indian food platters">
+        <img src="image.png" alt="Andhra Corner Restaurant with traditional Indian food platters" onerror="this.style.display='none';" />
+      </div>
+      <div class="popular-content">
+        <h3 class="restaurant-name">Andhra Spice Corner</h3>
+        <p class="restaurant-info">Indian, Curry, Vegetarian • 4.5 ★ • 30-40 mins</p>
+      </div>
+    </article>
+
+    <article class="popular-card" tabindex="0" role="article" aria-label="mantra">
+      <div class="popular-image" role="img" aria-label="mantra Restaurant image with sushi rolls and Japanese decor">
+        <img src="image copy 2.png" alt="mantra Restaurant with sushi rolls and Japanese decor" onerror="this.style.display='none';" />
+      </div>
+      <div class="popular-content">
+        <h3 class="restaurant-name">mantra Restaurant</h3>
+        <p class="restaurant-info">Japanese, Sushi • 4.8 ★ • 20-30 mins</p>
+      </div>
+    </article>
+
+    <article class="popular-card" tabindex="0" role="article" aria-label="Mayura Bakery">
+      <div class="popular-image" role="img" aria-label="Mayura Bakery image with cakes and pastries on display">
+        <img src="image copy.png" alt="Mayura Bakery with cakes and pastries on display" onerror="this.style.display='none';" />
+      </div>
+      <div class="popular-content">
+        <h3 class="restaurant-name">Mayura Bakery</h3>
+        <p class="restaurant-info">Bakery, Desserts • 4.6 ★ • 15-25 mins</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer role="contentinfo">
+  <div class="footer-container">
+    <section class="footer-section" aria-label="Company information">
+      <h3 class="footer-title">SABR Food Deliveries</h3>
+      <p>Delivering fresh and delicious food at your doorstep with speed and care.</p>
+    </section>
+    <section class="footer-section" aria-label="Navigation links">
+      <h3 class="footer-title">Quick Links</h3>
+      <a href="#" class="footer-link">Home</a>
+      <a href="#" class="footer-link">About Us</a>
+      <a href="#" class="footer-link">Restaurants</a>
+      <a href="#" class="footer-link">Contact</a>
+    </section>
+    <section class="footer-section" aria-label="Support links">
+      <h3 class="footer-title">Support</h3>
+      <a href="#" class="footer-link">Help Center</a>
+      <a href="#" class="footer-link">Terms of Service</a>
+      <a href="#" class="footer-link">Privacy Policy</a>
+    </section>
+    <section class="footer-section" aria-label="Social media links">
+      <h3 class="footer-title">Connect with Us</h3>
+      <a href="#" class="footer-link">Facebook</a>
+      <a href="#" class="footer-link">Twitter</a>
+      <a href="#" class="footer-link">Instagram</a>
+    </section>
+  </div>
+</footer>
+
+</body>
+</html>
+
